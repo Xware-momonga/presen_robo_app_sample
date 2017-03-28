@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sVs-ni-Tgb">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="G9I-Z3-Apj">
+            <objects>
+                <navigationController id="sVs-ni-Tgb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D1w-uZ-w7j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Yc4-5G-2Sw" kind="relationship" relationship="rootViewController" id="Ghf-fK-a60"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hZe-6L-cEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-346" y="-48"/>
+        </scene>
+        <!--Mini Peppre-->
+        <scene sceneID="uZn-EI-lFT">
+            <objects>
+                <viewController id="Yc4-5G-2Sw" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GgP-xw-1ui"/>
+                        <viewControllerLayoutGuide type="bottom" id="5e7-kQ-49H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SmR-3g-2kD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2p5-af-9Pn">
+                                <rect key="frame" x="172.5" y="318.5" width="31" height="30"/>
+                                <state key="normal" title="更新"/>
+                                <connections>
+                                    <action selector="touchUpInsideDownloadButton:" destination="Yc4-5G-2Sw" eventType="touchUpInside" id="vu0-p1-fcV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2p5-af-9Pn" firstAttribute="centerX" secondItem="SmR-3g-2kD" secondAttribute="centerX" id="bH9-FP-5IO"/>
+                            <constraint firstItem="2p5-af-9Pn" firstAttribute="centerY" secondItem="SmR-3g-2kD" secondAttribute="centerY" id="s50-Og-YHT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mini Peppre" id="zQb-Fl-v77"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gkw-2O-EQm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="422" y="-48"/>
+        </scene>
+    </scenes>
+</document>

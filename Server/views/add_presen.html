@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>プレゼン登録画面</title>
+	<link rel="stylesheet" href="static/vendor/bootstrap/css/bootstrap.min.css/">
+	<link rel="stylesheet" href="static/css/add_presen.css/">
+	<scripts src="static/vendor/bootstrap/js/bootstrap.min.js"></scripts>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="./">
+					<img alt="Brand" src="static/images/icon.jpg">
+				</a>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h1>プレゼン登録画面</h1>
+        <form action="/registerpresen" method="POST">
+			<div class="form-group">
+				<label for="presen-title">プレゼンタイトル:</label>
+				<input id="presen-title" class="form-control" type="text" name='title'>
+				<div class="add-btn">
+					<button class="btn btn-primary">登録</button>
+				</div>
+			</div>
+        </form>
+	</div>
+</body>
+</html>

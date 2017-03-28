@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ChoregrapheProject xmlns="http://www.aldebaran-robotics.com/schema/choregraphe/project.xsd" xar_version="3">
+    <Box name="root" id="-1" localization="8" tooltip="Root box of Choregraphe&apos;s behavior. Highest level possible." x="0" y="0">
+        <bitmap>media/images/box/root.png</bitmap>
+        <script language="4">
+            <content>
+                <![CDATA[]]>
+</content>
+        </script>
+        <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+        <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+        <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+        <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+        <Timeline enable="0">
+            <BehaviorLayer name="behavior_layer1">
+                <BehaviorKeyframe name="keyframe1" index="1">
+                    <Diagram>
+                        <Box name="Initialise" id="1" localization="8" tooltip="必要となるALMemoryを設定した後、DBから現在更新済みのプレゼンコンテンツを取得します。&#x0A;&#x0A;Host: サーバーのIPアドレス&#x0A;Port: サーバーのポート番号" x="329" y="94">
+                            <bitmap>media/images/box/box-diagram.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                            <Parameter name="Server IP Address" inherits_from_parent="0" content_type="3" value="192.168.11.22" default_value="" custom_choice="0" tooltip="" id="5" />
+                            <Parameter name="Server Port" inherits_from_parent="0" content_type="1" value="8000" default_value="0" min="0" max="9999" tooltip="" id="6" />
+                            <Parameter name="iOS IP Address" inherits_from_parent="0" content_type="3" value="192.168.11.2" default_value="" custom_choice="0" tooltip="" id="7" />
+                            <Timeline enable="0">
+                                <BehaviorLayer name="behavior_layer1">
+                                    <BehaviorKeyframe name="keyframe1" index="1">
+                                        <Diagram>
+                                            <Box name="SetMemoryKeys" id="1" localization="8" tooltip="" x="181" y="74">
+                                                <bitmap>media/images/box/box-python-script.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[import os
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        self.frameManager = ALProxy('ALFrameManager')
+        self.memory = ALProxy('ALMemory')
+
+    def onUnload(self):
+        self.frameManager = None
+        self.memory = None
+
+    def onInput_onStart(self):
+        """
+        : > INPUT
+        : 必要なALMemoryキーを予め指定します。
+        """
+        # DBのファイルパスを構成します
+        dbFilepath = os.path.join(self.frameManager.getBehaviorPath(self.behaviorId), '../db/pepper.sqlite')
+
+        # パラメータの値を用いてサーバーへのリクエストURLを構成します
+        serverIp = self.getParameter('Server IP Address')
+        serverPort = self.getParameter('Server Port')
+        serverUrl = '%s:%s' % (serverIp, serverPort)
+
+        # 連携するiOS端末のIPアドレスを取得します
+        iosIp = self.getParameter('iOS IP Address')
+        iosUrl = 'http://%s:8080/pepper' % iosIp
+
+        # 上記のデータをALMemoryに保存します
+        self.memory.insertData('mini_peppre/database_path', dbFilepath)
+        self.memory.insertData('mini_peppre/server/presen_info', 'http://%s/api/presen_info' % serverUrl)
+        self.memory.insertData('mini_peppre/server/dl_file', 'http://%s/api/dl_file' % serverUrl)
+        self.memory.insertData('mini_peppre/ios_url', iosUrl)
+
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                                                <Parameter name="Server IP Address" inherits_from_parent="1" content_type="3" value="" default_value="" custom_choice="0" tooltip="" id="5" />
+                                                <Parameter name="Server Port" inherits_from_parent="1" content_type="1" value="8080" default_value="0" min="0" max="9999" tooltip="" id="6" />
+                                                <Parameter name="iOS IP Address" inherits_from_parent="1" content_type="3" value="" default_value="" custom_choice="0" tooltip="" id="7" />
+                                            </Box>
+                                            <Box name="RetrieveDBSettings" id="2" localization="8" tooltip="" x="376" y="116">
+                                                <bitmap>media/images/box/box-python-script.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[from itertools import groupby
+from operator import itemgetter
+import sqlite3
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        self.memory = ALProxy('ALMemory')
+
+    def onUnload(self):
+        self.memory = None
+        self.dbFilepath = None
+
+    def onInput_onStart(self):
+        """
+        : > INPUT
+        : DBからプレゼン情報を取得してALMemoryに保存します。
+        """
+        self.dbFilepath = self.memory.getData('mini_peppre/database_path')
+
+        presenInfo = self._getPresentationInfo()
+        # JavaScriptで扱いやすいようにJSONに変換してALMemoryに保存します
+        self.memory.insertData('mini_peppre/all_presentations', json.dumps(presenInfo, ensure_ascii=False))
+        self.onStopped()
+
+    def _getPresentationInfo(self):
+        """
+        : > FUNCTION
+        : DBからプレゼン情報を取得してディクショナリとして返します。
+        : プレゼンごとのページ情報も取得します。
+        :
+        : @return presenInfo = 全部のプレゼン情報
+        """
+
+
+        query = """
+                SELECT
+                    presen.id As presenid,
+                    presen.title,
+                    page.id AS pageid,
+                    page.say_text,
+                    page.file_name,
+                    page.page_no
+                FROM
+                    tbl_presentations AS presen
+                    LEFT OUTER JOIN
+                        tbl_pages AS page
+                        ON
+                            presen.id = page.presen_id
+                ORDER BY
+                    presenid
+                """
+
+        # 返すディクショナリ
+        presenInfo = {}
+
+        with sqlite3.connect(self.dbFilepath) as conn:
+            conn.row_factory = sqlite3.Row
+            conn.text_factory = str
+            rows = conn.execute(query)
+
+            # presenidごとにディクショナリを作成します
+            # row[0](presenid)をキーにして、取得した情報をまとめてから処理をします
+            for presenid, groupedRowsIter in groupby(rows, key=itemgetter(0)):
+
+                groupedRows = list(groupedRowsIter)
+                presenInfo[presenid] = {
+                    'title': grouped_rows[0][1],
+                    'pages': {}
+                }
+
+                # pageidごとにサブディクショナリを作成します
+                for row in groupedRows:
+                    pageid = row[2]
+                    presenInfo[presenid]['pages'][pageid] = {
+                        'sayText': row[3],
+                        'fileName': row[4],
+                        'pageNo': row[5]
+                    }
+
+        return presenInfo
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                                            </Box>
+                                            <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="2" indexofinput="2" outputowner="1" indexofoutput="4" />
+                                            <Link inputowner="0" indexofinput="4" outputowner="2" indexofoutput="4" />
+                                        </Diagram>
+                                    </BehaviorKeyframe>
+                                </BehaviorLayer>
+                            </Timeline>
+                        </Box>
+                        <Box name="Update" id="2" localization="8" tooltip="サーバーからコンテンツを取得してDBとALMemoryに保存します。スライドファイルもダウンロードします。" x="595" y="50">
+                            <bitmap>media/images/box/box-diagram.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Input name="mini_peppre/play" type="0" type_size="1" nature="4" stm_value_name="mini_peppre/play" inner="1" tooltip="mini_peppre/play desc" id="4" />
+                            <Input name="mini_peppre/update" type="0" type_size="1" nature="4" stm_value_name="mini_peppre/update" inner="1" tooltip="mini_peppre/update desc" id="5" />
+                            <Output name="onStopped" type="0" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="6" />
+                            <Timeline enable="0">
+                                <BehaviorLayer name="behavior_layer1">
+                                    <BehaviorKeyframe name="keyframe1" index="1">
+                                        <Diagram>
+                                            <Box name="UpdatePresentations" id="1" localization="8" tooltip="サーバーに接続してプレゼンコンテンツを圧縮ファイルとしてダウンロードします。ダウンロードした後、圧縮ファイルを展開してDBに保存します。" x="132" y="177">
+                                                <bitmap>media/images/box/box-python-script.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[import json
+import os
+import requests
+import shutil
+import sqlite3
+import zipfile
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        self.frameManager = ALProxy('ALFrameManager')
+        self.memory = ALProxy('ALMemory')
+
+        self.isRunning = False
+        self.basePath = os.path.join(self.frameManager.getBehaviorPath(self.behaviorId), '../html/images')
+        self.tempDlPath = os.path.join(self.frameManager.getBehaviorPath(self.behaviorId), '../html/images/temp')
+
+    def onUnload(self):
+        self.frameManager = None
+        self.memory = None
+
+        self.isRunning = None
+        self.basePath = None
+
+    def onInput_onStart(self):
+        """
+        : > INPUT
+        : サーバーからプレゼンの情報とファイルを取得してDBに保存します。
+        """
+        # 更新処理が既に動いているかどうかを確認します
+        # 既に動いている場合は何もしません
+        if not self.isRunning:
+
+            self.isRunning = True
+
+            # サーバーからプレゼン情報を取得します
+            resultsJson = self._retrievePresentationJson()
+
+            if resultsJson:
+                # ファイルをダウンロードしておきます
+                self._downloadFiles()
+
+                # DBとALMemoryの値を更新します
+                self._updateDatabase(resultsJson)
+                self._updateMemory(resultsJson)
+
+                # ダウンロードしたファイルを移動します
+                self._clearOldFiles()
+                self._moveNewFiles()
+            else:
+                self.onFailed()
+
+            self.isRunning = False
+            self.onStopped()
+
+        else:
+            pass
+
+    def _retrievePresentationJson(self):
+        """
+        : > FUNCTION
+        : サーバーからプレゼンの情報を取得してjsonを返します。
+        :
+        : @return resultsJson = プレゼン情報
+        """
+        resultsJson = None
+
+        url = self.memory.getData('mini_peppre/server/presen_info')
+
+        # サーバーにリクエストを送信します
+        try:
+            r = requests.get(url, timeout=10)
+            resultsJson = r.json()
+        except Exception as e:
+            self.onError('Sync failed: %s' % e)
+            self.onStopped()
+
+        return resultsJson
+
+    def _downloadFiles(self):
+        """
+        : > FUNCTION
+        : サーバーからプレゼンの画像ファイルを圧縮ファイルとして取得して展開します。
+        """
+        # 新しいファイルをダウンロードします
+        url = self.memory.getData('mini_peppre/server/dl_file')
+
+        try:
+            r = requests.get(url, timeout=10, stream=True)
+            status = r.status_code
+        except Exception as e:
+            self.onError('Sync failed: %s' % e)
+            self.onStopped()
+
+        # ダウンロードに成功した場合
+        if status == 200:
+            # メモリの使いすぎを防ぐために圧縮ファイルをチャンクとして展開します
+            chunkSize = 1024
+            try:
+                with open('%s/presen_images.zip' % self.tempDlPath, 'w') as f:
+                    for chunk in r.iter_content(chunk_size=chunkSize):
+                        f.write(chunk)
+                imagesZip = zipfile.ZipFile('%s/presen_images.zip' % self.tempDlPath)
+                imagesZip.extractall(self.tempDlPath)
+            except Exception as e:
+                self.onError('Sync failed: %s' % e)
+                self.onStopped()
+        # ダウンロードに失敗した場合
+        else:
+            self.onError('Sync failed: status code %d' % r.status_code)
+            self.onStopped()
+
+        return
+
+    def _updateDatabase(self, resultsJson):
+        """
+        : > FUNCTION
+        : 現在のプレゼン情報をDBから全部削除します。
+        : その後、サーバーから取得したプレゼン情報をDBに書き込みます。
+        """
+        dbFilepath = self.memory.getData('mini_peppre/database_path')
+
+        with sqlite3.connect(dbFilepath) as conn:
+            conn.row_factory = sqlite3.Row
+            conn.text_factory = str
+
+            # DBのデータを削除しておきます
+            conn.execute('DELETE FROM tbl_presentations')
+            conn.execute('DELETE FROM tbl_pages')
+
+            presensParams = []
+            pagesParams = []
+
+            # DB更新処理を全部作成します
+            for presen in resultsJson['presens']:
+                # DB更新のメイン処理（プレゼン）
+                presensParams.append(
+                    (
+                        presen['id'],
+                        presen['title']
+                    )
+                )
+                for page in presen['pages']:
+                    # DB更新のサブ処理（ページ）
+                    pagesParams.append(
+                        (
+                            page['id'],
+                            page['saytext'],
+                            page['filename'],
+                            page['pageno'],
+                            page['presenid']
+                        )
+                    )
+
+            conn.executemany('INSERT OR REPLACE INTO tbl_presentations VALUES (?,?)', presensParams)
+            conn.executemany('INSERT OR REPLACE INTO tbl_pages VALUES (?,?,?,?,?)', pagesParams)
+
+        return
+
+    def _updateMemory(self, resultsJson):
+        """
+        : > FUNCTION
+        : サーバーから取得したプレゼン情報をALMemoryに書き込みます。
+        """
+        # ALMemory更新用のディクショナリ
+        allPresenInfos = {}
+
+        for presen in resultsJson['presens']:
+
+            presenInfo = {
+                'title': presen['title'].encode('utf-8'),
+                'pages': {}
+            }
+
+            for page in presen['pages']:
+
+                pageInfo = {
+                    'sayText': page['saytext'].encode('utf-8'),
+                    'fileName': page['filename'].encode('utf-8'),
+                    'pageNo': page['pageno']
+                }
+                presenInfo['pages'][page['id'].encode('utf-8')] = pageInfo
+
+            # 親ディクショナリキーに保存します
+            allPresenInfos[presen['id'].encode('utf-8')] = presenInfo
+
+        # 組み立てたディクショナリをALMemoryに保存して、HTMLを再読み込みさせるイベントを送信します。
+        self.memory.insertData('mini_peppre/all_presentations', json.dumps(allPresenInfos, ensure_ascii=False))
+        self.memory.raiseEvent('mini_peppre/refresh_list', 0)
+
+        return
+
+    def _clearOldFiles(self):
+        """
+        : > FUNCTION
+        : 現在のプレゼン画像ファイルを全部削除します。
+        """
+        # 削除するファイルとフォルダーを先に取得します
+        dirsToDelete = [x[0] for x in os.walk(self.basePath) if x[0] != self.basePath and 'temp' not in x[0]]
+
+        # 現在のファイルを削除しておきます
+        for dir in dirsToDelete:
+            shutil.rmtree(dir)
+
+        return
+
+    def _moveNewFiles(self):
+        """
+        : > FUNCTION
+        : ダウンロードしたプレゼン画像のファイルをtempから移動します。
+        """
+        # 移動するファイルとフォルダを先に取得します
+        dirsToMove = [x[0] for x in os.walk(self.tempDlPath) if x[0] != self.tempDlPath and 'dummy.txt' not in x[0]]
+
+        # ダウンロードしたファイルをtempから移動します
+        for dir in dirsToMove:
+            newDirPath = dir.replace('temp/', '')
+            os.rename(dir, newDirPath)
+
+        return
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                                                <Output name="onFailed" type="1" type_size="1" nature="2" inner="0" tooltip="" id="5" />
+                                                <Output name="onError" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                                            </Box>
+                                            <Box name="ShowErrorAlert" id="5" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key, and spreads the event to all its subscribers." x="697" y="177">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self, p):
+        self.memory.raiseEvent(self.getParameter("key"), p)
+        self.onStopped(p)
+
+    def onInput_onStop(self):
+        self.onUnload() #~ it is recommended to call onUnload of this box in a onStop method, as the code written in onUnload is used to stop the box as well
+        pass]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="0" type_size="1" nature="2" inner="0" tooltip="Receives the value to be inserted as an event in ALMemory." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="0" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the inserted value in ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="mini_peppre/error" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
+                                            </Box>
+                                            <Box name="Error2" id="6" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="352" y="231">
+                                                <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[# /!\ Generated content. Do not edit!
+class MyClass(GeneratedClass):
+	def __init__(self):
+		GeneratedClass.__init__(self)
+
+	def onInput_onStart(self):
+		self.onStopped("更新を失敗しました。ネットワーク設定などを確認してください。")]]>
+</content>
+                                                </script>
+                                                <pluginContent>
+                                                    <text>
+                                                        <![CDATA[更新を失敗しました。ネットワーク設定などを確認してください。]]>
+</text>
+                                                </pluginContent>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
+                                                <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
+                                            </Box>
+                                            <Box name="Error1" id="4" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="350" y="147">
+                                                <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[# /!\ Generated content. Do not edit!
+class MyClass(GeneratedClass):
+	def __init__(self):
+		GeneratedClass.__init__(self)
+
+	def onInput_onStart(self):
+		self.onStopped("更新を失敗しました。プレゼンが登録されていません。")]]>
+</content>
+                                                </script>
+                                                <pluginContent>
+                                                    <text>
+                                                        <![CDATA[更新を失敗しました。プレゼンが登録されていません。]]>
+</text>
+                                                </pluginContent>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
+                                                <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
+                                            </Box>
+                                            <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="5" />
+                                            <Link inputowner="6" indexofinput="2" outputowner="1" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="6" indexofoutput="3" />
+                                            <Link inputowner="4" indexofinput="2" outputowner="1" indexofoutput="5" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="4" indexofoutput="3" />
+                                            <Link inputowner="0" indexofinput="6" outputowner="0" indexofoutput="4" />
+                                        </Diagram>
+                                    </BehaviorKeyframe>
+                                </BehaviorLayer>
+                            </Timeline>
+                        </Box>
+                        <Box name="Play" id="3" localization="8" tooltip="" x="598" y="242">
+                            <bitmap>media/images/box/box-diagram.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="0" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                            <Timeline enable="0">
+                                <BehaviorLayer name="behavior_layer1">
+                                    <BehaviorKeyframe name="keyframe1" index="1">
+                                        <Diagram>
+                                            <Box name="FindPageScriptAndImage" id="2" localization="8" tooltip="各ページのセリフと画像ファイル名を出します。ページ限界を達すると、プレゼンを終了させます。" x="269" y="65">
+                                                <bitmap>media/images/box/box-python-script.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[from ast import literal_eval
+import time
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        self.memory = ALProxy('ALMemory')
+        self.id = None
+        self.pages = None
+        self.currentPage = 0
+
+    def onUnload(self):
+        self.memory = None
+        self.id = None
+        self.pages = None
+        self.currentPage = None
+
+    def onInput_onStart(self, id):
+        """
+        : > INPUT
+        :
+        : 再生するプレゼンのページ情報をインスタンス変数に格納して、
+        : プレゼン再生を開始します。
+        """
+
+        if id:
+            self.id = id
+            self.pages = {}
+            self.currentPage = 0
+
+            # 再生するプレゼンのページ情報を分かりやすいディクショナリに格納します
+            allPresentations = literal_eval(self.memory.getData('mini_peppre/all_presentations'))
+            presentationPages = allPresentations[id]['pages']
+
+            for page in presentationPages:
+                self.pages[presentationPages[page]['pageNo']] = [
+                    presentationPages[page]['sayText'],
+                    presentationPages[page]['fileName']
+                ]
+
+            # ウェブビューを隠すのに時間がかかることがあるため、念のためにプレゼンを開始する前に1秒待ちます
+            self.onPresentationInitialised()
+            time.sleep(1)
+
+            self.onInput_onNext()
+        else:
+            self.onCannotPlay()
+
+    def onInput_onNext(self):
+        """
+        : > INPUT
+        :
+        : 再生するプレゼンのページ情報をインスタンス変数に格納して、
+        : プレゼン再生を開始します。
+        """
+        # 現在ページ番号が合計ページ数より多ければ、プレゼンを終了します
+        if self.currentPage >= len(self.pages):
+            self.onPresentationCompleted()
+        else:
+            sayText = self.pages[self.currentPage][0]
+            fileName = self.pages[self.currentPage][1]
+
+            # 処理を行う度にページ番号を増やします
+            self.currentPage += 1
+
+            # 画像を表示します
+            if fileName:
+                self.onImageFound('%s/%s' % (self.id, fileName))
+
+            # 発話します
+            if sayText:
+                self.onTextFound(sayText)
+            else:  # セリフがなければ2秒ほど待って、onInput_onNextを繰り返します。
+                time.sleep(2)
+                self.onInput_onNext()
+
+
+    def onInput_onStop(self):
+        self.onUnload()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="0" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onNext" type="1" type_size="1" nature="1" inner="0" tooltip="" id="3" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="4" />
+                                                <Output name="onCannotPlay" type="1" type_size="1" nature="1" inner="0" tooltip="" id="5" />
+                                                <Output name="onPresentationCompleted" type="1" type_size="1" nature="1" inner="0" tooltip="" id="6" />
+                                                <Output name="onPresentationInitialised" type="1" type_size="1" nature="2" inner="0" tooltip="" id="7" />
+                                                <Output name="onImageFound" type="3" type_size="1" nature="2" inner="0" tooltip="" id="8" />
+                                                <Output name="onTextFound" type="3" type_size="1" nature="2" inner="0" tooltip="" id="9" />
+                                            </Box>
+                                            <Box name="AnimatedSayText" id="3" localization="8" tooltip="Say the text received on its input and move during its speech.&#x0A;" x="267" y="312">
+                                                <bitmap>media/images/box/interaction/say.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[import time
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+        self.tts = ALProxy('ALAnimatedSpeech')
+        self.ttsStop = ALProxy('ALAnimatedSpeech', True) #Create another proxy as wait is blocking if audioout is remote
+
+    def onLoad(self):
+        self.bIsRunning = False
+        self.ids = []
+
+    def onUnload(self):
+        for id in self.ids:
+            try:
+                self.ttsStop.stop(id)
+            except:
+                pass
+        while( self.bIsRunning ):
+            time.sleep( 0.2 )
+
+    def onInput_onStart(self, p):
+        self.bIsRunning = True
+        try:
+            movement = self.getParameter("Speaking movement mode")
+            sentence = "\RSPD="+ str( self.getParameter("Speed (%)") ) + "\ "
+            sentence += "\VCT="+ str( self.getParameter("Voice shaping (%)") ) + "\ "
+            sentence += str(p)
+            sentence +=  "\RST\ "
+            id = self.tts.post.say(str(sentence), {"speakingMovementMode":movement})
+            self.ids.append(id)
+            self.tts.wait(id, 0)
+        finally:
+            try:
+                self.ids.remove(id)
+            except:
+                pass
+            if( self.ids == [] ):
+                self.onStopped() # activate output of the box
+                self.bIsRunning = False
+
+    def onInput_onStop(self):
+        self.onUnload()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                                                <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this Input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this Input." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when Box behavior is finished." id="4" />
+                                                <Parameter name="Voice shaping (%)" inherits_from_parent="1" content_type="1" value="130" default_value="100" min="50" max="150" tooltip='Used to modify at runtime the voice feature (tone, speed). In a slighty&#x0A;different way than pitch and speed, it gives a kind of &quot;gender or age&#x0A;modification&quot; effect.&#x0A;&#x0A;For instance, a quite good male derivation of female voice can be&#x0A;obtained setting this parameter to 78%.&#x0A;&#x0A;Note: For a better effect, you can compensate this parameter with the&#x0A;speed parameter. For example, if you want to decrease by 20% the voice&#x0A;shaping, you will have to increase by 20% the speed to keep a constant&#x0A;average speed.' id="5" />
+                                                <Parameter name="Speed (%)" inherits_from_parent="1" content_type="1" value="105" default_value="100" min="50" max="200" tooltip="Changes the speed of the voice.&#x0A;&#x0A;Note: For a better effect, you can compensate this parameter with the voice&#x0A;shaping parameter. For example, if you want to increase by 20% the speed, you&#x0A;will have to decrease by 20% the voice shaping to keep a constant average&#x0A;speed." id="6" />
+                                                <Parameter name="Speaking movement mode" inherits_from_parent="0" content_type="3" value="random" default_value="contextual" custom_choice="0" tooltip="Change the body language mode during the speech.&#x0A;disabled: The robot will only play the animations given by the user through the animation parameter.&#x0A;random: During time the robot has no animation to play, he will launch random neutral animations.&#x0A;contextual: During time the robot has no animation to play, he will try to launch a new one accordingly to the saying text. Every time the robot can&apos;t find a contextual animation he will launch a random neutral animation." id="7">
+                                                    <Choice value="disabled" />
+                                                    <Choice value="random" />
+                                                    <Choice value="contextual" />
+                                                </Parameter>
+                                            </Box>
+                                            <Box name="ShowWebView" id="8" localization="8" tooltip="Shows the webview (html content) on the tablet.&#x0A;&#x0A;V1.0.0&#x0A;" x="691" y="380">
+                                                <bitmap>media/images/box/internet/internet.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[
+
+class MyClass(GeneratedClass):
+
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        pass
+
+    def onUnload(self):
+        pass
+
+    def _getTabletService(self):
+        tabletService = None
+        try:
+            tabletService = self.session().service("ALTabletService")
+        except Exception as e:
+            self.logger.error(e)
+        return tabletService
+
+    def onInput_onStart(self):
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        tabletService = self._getTabletService()
+        if tabletService:
+            tabletService.showWebview()
+        else:
+            self.logger.warning("ALTabletService not found.")
+        self.onStopped()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
+                                            </Box>
+                                            <Box name="ShowImageTablet" id="17" localization="8" tooltip="display an image on the screen&#x0A;&#x0A;V1.0.0&#x0A;" x="537" y="351">
+                                                <bitmap>media/images/box/interaction/rec_movie.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[import time
+
+class MyClass(GeneratedClass):
+
+    def onLoad(self):
+        pass
+
+    def onUnload(self):
+        pass
+
+    def _getTabletService(self):
+        tabletService = None
+        try:
+            tabletService = self.session().service("ALTabletService")
+        except Exception as e:
+            self.logger.error(e)
+        return tabletService
+
+    def _getAbsoluteUrl(self, partialUrl):
+        import os
+        subPath = os.path.join(self.packageUid(), os.path.normpath(partialUrl).lstrip("\\/"))
+        return "http://%s/apps/%s" %(self._getTabletService().robotIp(), subPath.replace(os.path.sep, "/"))
+
+    def onInput_onStart(self, imagePath):
+        tabletService = self._getTabletService()
+        if tabletService:
+            try:
+                url = 'images/%s' % (imagePath)
+                if url == '':
+                    self.logger.error("URL of the image is empty")
+                if not url.startswith('http'):
+                    url = self._getAbsoluteUrl(url)
+                tabletService.showImage(url)
+            except Exception as err:
+                self.logger.error("Error during ShowImage : %s " % err)
+                self.onStopped()
+        else:
+            self.logger.warning("No ALTabletService, can't display the image.")
+            self.onStopped()
+
+    def onInput_onHideImage(self):
+        tabletService = self._getTabletService()
+        if tabletService:
+            try:
+                tabletService.hideImage()
+                time.sleep(1)
+                self.onHidden()
+            except Exception as err:
+                self.logger.error("Error during HideImage : %s " % err)
+                self.onStopped()
+        else:
+            self.logger.warning("No ALTabletService, can't hide the image.")
+            self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Input name="onHideImage" type="1" type_size="1" nature="1" inner="0" tooltip="" id="4" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="5" />
+                                                <Output name="onHidden" type="1" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                                            </Box>
+                                            <Box name="ShowImageIOS" id="9" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="591" y="246">
+                                                <bitmap>media/images/box/box-python-script.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[import requests
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self, imagePath):
+        """
+        : > INPUT
+        : iOS端末にプレゼン画像を表示するリクエストを送信します。
+        """
+        presenId, imageName = imagePath.split('/')
+
+        url = self.memory.getData('mini_peppre/ios_url')
+        params = {
+            'command':'open',
+            'presenid':presenId,
+            'pageid':imageName
+        }
+
+        try:
+            requests.get(url, params=params, timeout=10)
+        except Exception as e:
+            self.logger.info(e)
+
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="2" inner="0" tooltip="" id="5" />
+                                            </Box>
+                                            <Box name="CloseImageIOS" id="10" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="814" y="103">
+                                                <bitmap>media/images/box/box-python-script.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[import requests
+
+class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        """
+        : > INPUT
+        : iOS端末にプレゼン画像を終了するリクエストを送信します。
+        """
+        url = self.memory.getData('mini_peppre/ios_url')
+        params = {
+            'command':'close',
+        }
+
+        try:
+            requests.get(url, params=params, timeout=10)
+        except Exception as e:
+            self.logger.info(e)
+
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="2" inner="0" tooltip="" id="5" />
+                                            </Box>
+                                            <Box name="HideWebView" id="5" localization="8" tooltip="Hides the webview (html content) on the tablet, behind a generic cover&#x0A;&#x0A;V1.0.0&#x0A;" x="695" y="166">
+                                                <bitmap>media/images/box/internet/internet.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[
+
+class MyClass(GeneratedClass):
+
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        pass
+
+    def onUnload(self):
+        pass
+
+    def _getTabletService(self):
+        tabletService = None
+        try:
+            tabletService = self.session().service("ALTabletService")
+        except Exception as e:
+            self.logger.error(e)
+        return tabletService
+
+    def onInput_onStart(self):
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        tabletService = self._getTabletService()
+        if tabletService:
+            tabletService.hideWebview()
+        else:
+            self.logger.warning("ALTabletService not found.")
+        self.onStopped()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
+                                            </Box>
+                                            <Link inputowner="3" indexofinput="2" outputowner="2" indexofoutput="9" />
+                                            <Link inputowner="2" indexofinput="3" outputowner="3" indexofoutput="4" />
+                                            <Link inputowner="9" indexofinput="2" outputowner="2" indexofoutput="8" />
+                                            <Link inputowner="8" indexofinput="2" outputowner="17" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="2" indexofoutput="7" />
+                                            <Link inputowner="17" indexofinput="2" outputowner="2" indexofoutput="8" />
+                                            <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="0" indexofinput="4" outputowner="2" indexofoutput="5" />
+                                            <Link inputowner="0" indexofinput="4" outputowner="8" indexofoutput="3" />
+                                            <Link inputowner="10" indexofinput="2" outputowner="2" indexofoutput="6" />
+                                            <Link inputowner="17" indexofinput="4" outputowner="2" indexofoutput="6" />
+                                        </Diagram>
+                                    </BehaviorKeyframe>
+                                </BehaviorLayer>
+                            </Timeline>
+                        </Box>
+                        <Box name="Close" id="4" localization="8" tooltip="" x="456" y="403">
+                            <bitmap>media/images/box/box-diagram.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Input name="mini_peppre/close" type="0" type_size="1" nature="4" stm_value_name="mini_peppre/close" inner="1" tooltip="mini_peppre/close desc" id="4" />
+                            <Input name="BackBumperPressed" type="0" type_size="1" nature="4" stm_value_name="BackBumperPressed" inner="1" tooltip="BackBumperPressed desc" id="5" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="6" />
+                            <Timeline enable="0">
+                                <BehaviorLayer name="behavior_layer1">
+                                    <BehaviorKeyframe name="keyframe1" index="1">
+                                        <Diagram>
+                                            <Box name="Comment" id="1" localization="8" tooltip="To comment your behavior. Enter the text here and move the box where you like&#x0A;to add the comment.&#x0A;&#x0A;Note: This box is not functional and has no effect on the behavior." plugin="textedit_plugin" x="242" y="147">
+                                                <bitmap>media/images/box/box-script.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[# /!\ Generated content. Do not edit!
+class MyClass(GeneratedClass):
+	def __init__(self):
+		GeneratedClass.__init__(self)
+
+	def onInput_onStart(self):
+		self.onStopped("タブレットやバックバンパーからのイベントを感知します。イベントが来る場合、アプリを終了させます。")]]>
+</content>
+                                                </script>
+                                                <pluginContent>
+                                                    <text>
+                                                        <![CDATA[タブレットやバックバンパーからのイベントを感知します。イベントが来る場合、アプリを終了させます。]]>
+</text>
+                                                </pluginContent>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                                            </Box>
+                                            <Link inputowner="0" indexofinput="6" outputowner="0" indexofoutput="4" />
+                                            <Link inputowner="0" indexofinput="6" outputowner="0" indexofoutput="5" />
+                                        </Diagram>
+                                    </BehaviorKeyframe>
+                                </BehaviorLayer>
+                            </Timeline>
+                        </Box>
+                        <Box name="Show App" id="5" localization="8" tooltip="Loads the application on the tablet, if it exists, and displays the webview.&#x0A;&#x0A;V1.0.0&#x0A;" x="328" y="207">
+                            <bitmap>media/images/box/root.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[
+
+class MyClass(GeneratedClass):
+
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        self.isRunning = False
+
+    def onUnload(self):
+        self.isRunning = False
+
+    def _getTabletService(self):
+        tabletService = None
+        try:
+            tabletService = self.session().service("ALTabletService")
+        except Exception as e:
+            self.logger.error(e)
+        return tabletService
+
+    def onInput_onStart(self):
+        if self.isRunning:
+            return # already running, nothing to do
+        self.isRunning = True
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        tabletService = self._getTabletService()
+        appName = self.packageUid()
+        state = False
+        if appName:
+            if tabletService:
+                if tabletService.loadApplication(appName):
+                    self.logger.info("Successfully set application: %s" % appName)
+                    tabletService.showWebview()
+                    state = True
+                else:
+                    self.logger.warning("Got tablet service, but failed to set application: %s" % appName)
+            else:
+                self.logger.warning("Couldn't find tablet service, so can't set application: %s" % appName)
+        if state:
+            self.onSuccess()
+        else:
+            self.onFailure()]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Output name="onSuccess" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished successfully." id="3" />
+                            <Output name="onFailure" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished unsuccessfully." id="4" />
+                        </Box>
+                        <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="0" indexofinput="4" outputowner="4" indexofoutput="6" />
+                        <Link inputowner="5" indexofinput="2" outputowner="1" indexofoutput="4" />
+                        <Link inputowner="4" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="2" indexofinput="2" outputowner="1" indexofoutput="4" />
+                        <Link inputowner="3" indexofinput="2" outputowner="2" indexofoutput="6" />
+                        <Link inputowner="2" indexofinput="2" outputowner="3" indexofoutput="4" />
+                    </Diagram>
+                </BehaviorKeyframe>
+            </BehaviorLayer>
+        </Timeline>
+    </Box>
+</ChoregrapheProject>

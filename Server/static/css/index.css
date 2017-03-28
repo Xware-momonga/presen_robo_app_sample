@@ -1,0 +1,13 @@
+table{
+    table-layout: fixed;
+}
+
+table .title{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.add-btn{
+    float: right;
+}

@@ -1,0 +1,22 @@
+.
+├── MiniPeppre.py           # メインサーバ起動ファイル
+├── directories.txt         # ディレクトリ構成図
+├── peppre.db               # ペップレDB
+├── presen_images           # プレゼン用ファイルアップロードフォルダ
+├── requirements.txt        # サーバ起動用ライブラリリスト
+├── schema.sql              # ペップレDBスキーマ
+├── static                  # 静的ファイル保持フォルダ
+│   ├── css
+│   │   ├── add_presen.css  # プレゼン登録画面 CSS
+│   │   ├── edit_presen.css # プレゼン編集画面 CSS
+│   │   └── index.css       # プレゼン編集画面 CSS
+│   ├── images
+│   │   └── icon.jpg        # アプリアイコン
+│   ├── js
+│   │   └── edit_form.js    # プレゼン編集画面 JS
+│   └── vendor              # 外部ライブラリ(Bootstrap, jQuery)
+├── temp                    # ダウンロード用ファイル一時保存フォルダ
+└── views                   # 各画面 html テンプレートフォルダ
+    ├── add_presen.html     # プレゼン登録画面
+    ├── edit_presen.html    # プレゼン編集画面
+    └── index.html          # プレゼン一覧画面

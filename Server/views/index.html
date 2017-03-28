@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>プレゼン一覧画面</title>
+	<link rel="stylesheet" href="static/vendor/bootstrap/css/bootstrap.min.css/">
+	<link rel="stylesheet" href="static/css/index.css">
+	<scripts src="static/vendor/bootstrap/js/bootstrap.min.js"></scripts>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="./">
+					<img alt="Brand" src="static/images/icon.jpg">
+				</a>
+			</div>
+		</div>
+	</nav>
+	</nav>
+	<div class="container">
+		<h1>プレゼン一覧画面</h1>
+		<div class="add-btn">
+			<button class="btn btn-default" type="button" onclick="location.href='/addpresen'">追加</button>
+		</div>
+		<table class="table table-striped  ">
+			<thead>
+				<tr>
+					<th>プレゼンタイトル</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			% for presen in presen_list:
+				<tr>
+					<td class="title"><a href="/editpresen?presenid={{presen['id']}}">{{presen['title']}}</td>
+				</tr>
+			% end
+			
+			</tbody>
+			
+		</table>
+	</div>
+
+</body>
+</html>

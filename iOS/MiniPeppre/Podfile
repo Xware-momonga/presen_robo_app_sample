@@ -1,0 +1,9 @@
+platform :ios, '10.2'
+use_frameworks!
+
+target "MiniPeppre" do
+	pod 'AFNetworking'
+    pod 'GCDWebServer'
+	pod 'SSZipArchive'
+	pod 'SVProgressHUD'
+end

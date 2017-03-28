@@ -1,0 +1,64 @@
+body {
+	height: 1067px;
+	width: 1707px;
+	background-color: #f7f7f7;
+	overflow: hidden;
+	text-align: center;
+}
+
+/*タイトル（上部）*/
+body > div:nth-child(1) {
+	height: 20%;
+	font-size: 100px;
+	padding-top: 50px;
+}
+
+/*テーブル（中部）*/
+body > div:nth-child(2) {
+	height: 60%;
+}
+#loading {
+	margin-top: 50px;
+}
+#main-table {
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	text-align: left;
+	background-color: #ffffff;
+	box-shadow: inset 0px 0px 10px 0px black;
+}
+#main-table > table,
+#main-table > table > tbody {
+}
+#main-table > table > tbody > tr > td {
+	max-width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 70px;
+	text-align: center;
+}
+#main-table > table > tbody > tr.success > td {
+	background-color: rgba(36, 148, 29, 0.2) !important
+}
+
+/*フッター・ボタン（下部）*/
+body > div:nth-child(3) {
+	height: 20%;
+	padding-top: 20px;
+}
+body > div:nth-child(3) > div {
+	height: 100%;
+}
+body > div:nth-child(3) > div > button {
+	height: 150px;
+	width: 450px;
+	font-size: 80px !important;
+}
+body > div:nth-child(3) > div:first-child > button {
+	float: right;
+}
+body > div:nth-child(3) > div:last-child > button {
+	float: left;
+}

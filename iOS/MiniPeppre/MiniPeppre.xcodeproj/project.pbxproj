@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		87555FBC1E495CC20082A7CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87555FBB1E495CC20082A7CC /* main.m */; };
+		87555FBF1E495CC20082A7CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87555FBE1E495CC20082A7CC /* AppDelegate.m */; };
+		87555FC21E495CC20082A7CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87555FC11E495CC20082A7CC /* ViewController.m */; };
+		87555FC51E495CC20082A7CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87555FC31E495CC20082A7CC /* Main.storyboard */; };
+		87555FC71E495CC20082A7CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87555FC61E495CC20082A7CC /* Assets.xcassets */; };
+		87555FCA1E495CC20082A7CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87555FC81E495CC20082A7CC /* LaunchScreen.storyboard */; };
+		8793A66E1E4965E400C4CD95 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8793A66D1E4965E400C4CD95 /* PageViewController.m */; };
+		8793A6701E4965F000C4CD95 /* PageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8793A66F1E4965F000C4CD95 /* PageViewController.storyboard */; };
+		8793A6731E4972D000C4CD95 /* MiniPeppre.m in Sources */ = {isa = PBXBuildFile; fileRef = 8793A6721E4972D000C4CD95 /* MiniPeppre.m */; };
+		8B5F0D530DD266D71BEDB749 /* Pods_MiniPeppre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41A7741561EF5D6B02344BBC /* Pods_MiniPeppre.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		41A7741561EF5D6B02344BBC /* Pods_MiniPeppre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MiniPeppre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E51719D0B8245F754B2B869 /* Pods-MiniPeppre.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiniPeppre.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiniPeppre/Pods-MiniPeppre.release.xcconfig"; sourceTree = "<group>"; };
+		87555FB71E495CC20082A7CC /* MiniPeppre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniPeppre.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		87555FBB1E495CC20082A7CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		87555FBD1E495CC20082A7CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		87555FBE1E495CC20082A7CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		87555FC01E495CC20082A7CC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		87555FC11E495CC20082A7CC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		87555FC41E495CC20082A7CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		87555FC61E495CC20082A7CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		87555FC91E495CC20082A7CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		87555FCB1E495CC20082A7CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8768F43E1E516773004E8CDB /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		8793A66C1E4965E400C4CD95 /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		8793A66D1E4965E400C4CD95 /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
+		8793A66F1E4965F000C4CD95 /* PageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PageViewController.storyboard; sourceTree = "<group>"; };
+		8793A6711E4972D000C4CD95 /* MiniPeppre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniPeppre.h; sourceTree = "<group>"; };
+		8793A6721E4972D000C4CD95 /* MiniPeppre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiniPeppre.m; sourceTree = "<group>"; };
+		8871F3F431184ABDB1DF27ED /* Pods-MiniPeppre.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiniPeppre.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MiniPeppre/Pods-MiniPeppre.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		87555FB41E495CC20082A7CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B5F0D530DD266D71BEDB749 /* Pods_MiniPeppre.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		87555FAE1E495CC20082A7CC = {
+			isa = PBXGroup;
+			children = (
+				87555FB91E495CC20082A7CC /* MiniPeppre */,
+				87555FB81E495CC20082A7CC /* Products */,
+				D1CB1071E393EAD2EF093964 /* Pods */,
+				A38691EF690F80C84FF3A36A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		87555FB81E495CC20082A7CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87555FB71E495CC20082A7CC /* MiniPeppre.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		87555FB91E495CC20082A7CC /* MiniPeppre */ = {
+			isa = PBXGroup;
+			children = (
+				8768F43E1E516773004E8CDB /* Const.h */,
+				8793A6711E4972D000C4CD95 /* MiniPeppre.h */,
+				8793A6721E4972D000C4CD95 /* MiniPeppre.m */,
+				87555FBD1E495CC20082A7CC /* AppDelegate.h */,
+				87555FBE1E495CC20082A7CC /* AppDelegate.m */,
+				87555FC01E495CC20082A7CC /* ViewController.h */,
+				87555FC11E495CC20082A7CC /* ViewController.m */,
+				87555FC31E495CC20082A7CC /* Main.storyboard */,
+				8793A66C1E4965E400C4CD95 /* PageViewController.h */,
+				8793A66D1E4965E400C4CD95 /* PageViewController.m */,
+				8793A66F1E4965F000C4CD95 /* PageViewController.storyboard */,
+				87555FC61E495CC20082A7CC /* Assets.xcassets */,
+				87555FC81E495CC20082A7CC /* LaunchScreen.storyboard */,
+				87555FCB1E495CC20082A7CC /* Info.plist */,
+				87555FBA1E495CC20082A7CC /* Supporting Files */,
+			);
+			path = MiniPeppre;
+			sourceTree = "<group>";
+		};
+		87555FBA1E495CC20082A7CC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				87555FBB1E495CC20082A7CC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A38691EF690F80C84FF3A36A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41A7741561EF5D6B02344BBC /* Pods_MiniPeppre.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D1CB1071E393EAD2EF093964 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8871F3F431184ABDB1DF27ED /* Pods-MiniPeppre.debug.xcconfig */,
+				5E51719D0B8245F754B2B869 /* Pods-MiniPeppre.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		87555FB61E495CC20082A7CC /* MiniPeppre */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87555FCE1E495CC20082A7CC /* Build configuration list for PBXNativeTarget "MiniPeppre" */;
+			buildPhases = (
+				AE100495479C48CF9F5A3121 /* [CP] Check Pods Manifest.lock */,
+				87555FB31E495CC20082A7CC /* Sources */,
+				87555FB41E495CC20082A7CC /* Frameworks */,
+				87555FB51E495CC20082A7CC /* Resources */,
+				50921F868C5515A4BF9A705C /* [CP] Embed Pods Frameworks */,
+				46D44BDABE782EB72C3009E1 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MiniPeppre;
+			productName = MiniPeppre;
+			productReference = 87555FB71E495CC20082A7CC /* MiniPeppre.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		87555FAF1E495CC20082A7CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Xware Corporation";
+				TargetAttributes = {
+					87555FB61E495CC20082A7CC = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 8Q6VNKP948;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 87555FB21E495CC20082A7CC /* Build configuration list for PBXProject "MiniPeppre" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 87555FAE1E495CC20082A7CC;
+			productRefGroup = 87555FB81E495CC20082A7CC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				87555FB61E495CC20082A7CC /* MiniPeppre */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		87555FB51E495CC20082A7CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8793A6701E4965F000C4CD95 /* PageViewController.storyboard in Resources */,
+				87555FCA1E495CC20082A7CC /* LaunchScreen.storyboard in Resources */,
+				87555FC71E495CC20082A7CC /* Assets.xcassets in Resources */,
+				87555FC51E495CC20082A7CC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46D44BDABE782EB72C3009E1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MiniPeppre/Pods-MiniPeppre-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50921F868C5515A4BF9A705C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MiniPeppre/Pods-MiniPeppre-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE100495479C48CF9F5A3121 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		87555FB31E495CC20082A7CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87555FC21E495CC20082A7CC /* ViewController.m in Sources */,
+				87555FBF1E495CC20082A7CC /* AppDelegate.m in Sources */,
+				87555FBC1E495CC20082A7CC /* main.m in Sources */,
+				8793A6731E4972D000C4CD95 /* MiniPeppre.m in Sources */,
+				8793A66E1E4965E400C4CD95 /* PageViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		87555FC31E495CC20082A7CC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87555FC41E495CC20082A7CC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		87555FC81E495CC20082A7CC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87555FC91E495CC20082A7CC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		87555FCC1E495CC20082A7CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		87555FCD1E495CC20082A7CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		87555FCF1E495CC20082A7CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8871F3F431184ABDB1DF27ED /* Pods-MiniPeppre.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8Q6VNKP948;
+				INFOPLIST_FILE = MiniPeppre/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.it-momonga.MiniPeppre";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		87555FD01E495CC20082A7CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E51719D0B8245F754B2B869 /* Pods-MiniPeppre.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8Q6VNKP948;
+				INFOPLIST_FILE = MiniPeppre/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.it-momonga.MiniPeppre";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		87555FB21E495CC20082A7CC /* Build configuration list for PBXProject "MiniPeppre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87555FCC1E495CC20082A7CC /* Debug */,
+				87555FCD1E495CC20082A7CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87555FCE1E495CC20082A7CC /* Build configuration list for PBXNativeTarget "MiniPeppre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87555FCF1E495CC20082A7CC /* Debug */,
+				87555FD01E495CC20082A7CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 87555FAF1E495CC20082A7CC /* Project object */;
+}
