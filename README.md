@@ -22,4 +22,4 @@
   * Python 3.5.3
   
 ## ライセンス
-[MIT ライセンス](https://github.com/Xware-momonga/MiniPeppre/blob/master/LICENSE)
+[MIT ライセンス](https://github.com/Xware-momonga/presen_robo_app_sample/blob/master/LICENSE)
